@@ -5,22 +5,33 @@
 
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="JarTestPU" />
+		<property name="persistenceUnitName" value="bookstorePU" />
 	</bean>
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	<bean id="PaymenttypeDAO" class="com.bookstore.jpa.PaymenttypeDAO">
+	<bean id="AuthorDAO" class="com.bookstore.jpa.AuthorDAO">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<bean id="CustomerDAO" class="com.bookstore.jpa.CustomerDAO">
+	<bean id="UserDAO" class="com.bookstore.jpa.UserDAO">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<bean id="BillDAO" class="com.bookstore.jpa.BillDAO">
+	<bean id="BookDAO" class="com.bookstore.jpa.BookDAO">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<bean id="PaymentDAO" class="com.bookstore.jpa.PaymentDAO">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	
+	<bean id="bookManager" class="com.bookstore.service.BookManager">
+		<property name="bookDAO" ref="BookDAO" />
+	</bean>
+	
+	<bean id="bookListController" class="com.bookstore.web.BookListController">
+		<property name="viewName" value="booklist" />
+		<property name="bookManager" ref="bookManager" />
+	</bean>
+	
+	<bean id="latestController" class="com.bookstore.web.LatestController">
+		<property name="viewName" value="latest" />
+		<property name="bookManager" ref="bookManager" />
 	</bean>
 </beans>

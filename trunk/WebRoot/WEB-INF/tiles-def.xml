@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<tiles-definitions>
+
+	<!-- Components -->
+	<definition name="menu-tile" path="/WEB-INF/jsp/menu.jsp" />
+	<definition name="left-nav-tile" path="/WEB-INF/jsp/leftnav.jsp" />
+	<definition name="book-list-tile" path="/WEB-INF/jsp/bookList.jsp" />
+	<definition name="foot-tile" path="/WEB-INF/jsp/footer.jsp" />
+	<definition name="latest-tile" path="/WEB-INF/jsp/latest.jsp" />
+
+	<!-- Pages -->
+
+	<!-- Example -->
+	<definition name="layout" path="/WEB-INF/jsp/layout.jsp">
+		<put name="title" value="BookStore" />
+		<put name="menu-position" value="menu-tile" />
+		<put name="left-nav-position" value="left-nav-tile" />
+		<put name="body-position" value="FORGOT" />
+		<put name="foot-position" value="foot-tile" />
+	</definition>
+	
+	<definition name="booklist" extends="layout">
+		<put name="body-position" value="book-list-tile" />
+	</definition>
+	
+	<definition name="latest" extends="layout">
+		<put name="body-position" value="latest-tile" />
+	</definition>
+
+</tiles-definitions>
