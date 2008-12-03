@@ -13,7 +13,7 @@ public class BookManager {
 	}
 	
 	public List getLatest() {
-		return bookDAO.findAll();
+		return bookDAO.findLatest();
 	}
 
 	public BookDAO getBookDAO() {
