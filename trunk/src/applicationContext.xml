@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd" xmlns:tx="http://www.springframework.org/schema/tx">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	xmlns:tx="http://www.springframework.org/schema/tx">
 
 
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="JarTestPU" />
 	</bean>
-	<bean id="transactionManager"
-		class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory"
-			ref="entityManagerFactory" />
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" /></beans>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="PaymenttypeDAO" class="com.bookstore.jpa.PaymenttypeDAO">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<bean id="CustomerDAO" class="com.bookstore.jpa.CustomerDAO">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<bean id="BillDAO" class="com.bookstore.jpa.BillDAO">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<bean id="PaymentDAO" class="com.bookstore.jpa.PaymentDAO">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+</beans>
