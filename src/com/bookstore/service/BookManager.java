@@ -2,8 +2,6 @@ package com.bookstore.service;
 
 import java.util.List;
 
-import org.springframework.orm.jpa.JpaTemplate;
-
 import com.bookstore.jpa.BookDAO;
 
 public class BookManager {
