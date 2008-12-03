@@ -6,6 +6,10 @@
     
 	<persistence-unit name="JarTestPU" transaction-type="RESOURCE_LOCAL">
 		<provider>oracle.toplink.essentials.PersistenceProvider</provider>
+		<class>com.bookstore.jpa.Paymenttype</class>
+		<class>com.bookstore.jpa.Customer</class>
+		<class>com.bookstore.jpa.Bill</class>
+		<class>com.bookstore.jpa.Payment</class>
 	</persistence-unit>
-  
+
 </persistence>
