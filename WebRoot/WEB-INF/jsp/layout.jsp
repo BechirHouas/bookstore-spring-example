@@ -4,13 +4,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title><tiles:getAsString name="title"/></title>
-		<link rel="stylesheet" type="text/css" href="style/style.css"/>
+		<title><tiles:getAsString name="title" />
+		</title>
+		<link rel="stylesheet" type="text/css" href="style/style.css" />
+		<script type="text/javascript" src="scripts/jquery.js"></script>
+		<script type="text/javascript" src="scripts/ready.js"></script>
+
 	</head>
 	<body>
 		<div id="container">
 			<div id="header">
-				<a href="/books"><tiles:getAsString name="title"/></a>
+				<a href="/books"><tiles:getAsString name="title" />
+				</a>
 			</div>
 			<div id="menu">
 				<tiles:insert attribute="menu-position" />
