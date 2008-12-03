@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
+import org.hibernate.Criteria;
 import org.hibernate.LockMode;
+import org.hibernate.criterion.Order;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -105,6 +108,20 @@ public class BookDAO extends HibernateDaoSupport {
 		try {
 			String queryString = "from Book";
 			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	public List findLatest() {
+		log.debug("finding all Book instances");
+		try {
+			String queryString = "from Book";
+			Criteria criteria = this.getSession().createCriteria(Book.class);
+			criteria.addOrder(Order.desc("createdDate"));
+			criteria.setMaxResults(5);
+			return criteria.list();
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
 			throw re;
