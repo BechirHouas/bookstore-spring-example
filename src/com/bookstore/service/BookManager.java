@@ -2,7 +2,7 @@ package com.bookstore.service;
 
 import java.util.List;
 
-import com.bookstore.jpa.BookDAO;
+import com.bookstore.hibernate.BookDAO;
 
 public class BookManager {
 
@@ -13,7 +13,7 @@ public class BookManager {
 	}
 	
 	public List getLatest() {
-		return bookDAO.findLatest();
+		return bookDAO.findAll();
 	}
 
 	public BookDAO getBookDAO() {

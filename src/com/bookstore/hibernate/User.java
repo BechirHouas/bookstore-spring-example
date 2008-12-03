@@ -1,4 +1,4 @@
-package com.bookstore.jpa;
+package com.bookstore.hibernate;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
