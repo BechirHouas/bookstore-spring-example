@@ -1,4 +1,4 @@
-package com.bookstore.jpa;
+package com.bookstore.hibernate;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -74,7 +74,7 @@ public abstract class AbstractBook implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "author_id", nullable = false)
 	public Author getAuthor() {
 		return this.author;

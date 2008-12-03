@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
-	xmlns:tx="http://www.springframework.org/schema/tx">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="bookstorePU" />
+	<bean id="bookstoreSessionFactoryId" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
 	</bean>
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	<bean id="BookDAO" class="com.bookstore.hibernate.BookDAO">
+		<property name="sessionFactory">
+			<ref bean="bookstoreSessionFactoryId" />
+		</property>
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	<bean id="AuthorDAO" class="com.bookstore.jpa.AuthorDAO">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	<bean id="UserDAO" class="com.bookstore.hibernate.UserDAO">
+		<property name="sessionFactory">
+			<ref bean="bookstoreSessionFactoryId" />
+		</property>
 	</bean>
-	<bean id="UserDAO" class="com.bookstore.jpa.UserDAO">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-	<bean id="BookDAO" class="com.bookstore.jpa.BookDAO">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	<bean id="AuthorDAO" class="com.bookstore.hibernate.AuthorDAO">
+		<property name="sessionFactory">
+			<ref bean="bookstoreSessionFactoryId" />
+		</property>
 	</bean>
 	
 	<bean id="bookManager" class="com.bookstore.service.BookManager">
 		<property name="bookDAO" ref="BookDAO" />
 	</bean>
 	
+	<!-- Controllers -->
 	<bean id="bookListController" class="com.bookstore.web.BookListController">
 		<property name="viewName" value="booklist" />
 		<property name="bookManager" ref="bookManager" />
 	</bean>
-	
 	<bean id="latestController" class="com.bookstore.web.LatestController">
 		<property name="viewName" value="latest" />
 		<property name="bookManager" ref="bookManager" />

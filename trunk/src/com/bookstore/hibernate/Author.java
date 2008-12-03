@@ -1,4 +1,4 @@
-package com.bookstore.jpa;
+package com.bookstore.hibernate;
 
 import java.util.Set;
 

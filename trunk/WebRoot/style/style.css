@@ -43,6 +43,10 @@ body {
 	color: #ffffff;
 }
 
+#login input {
+	font-style: italic;
+}
+
 #login-username {
 	border: none;
 }
