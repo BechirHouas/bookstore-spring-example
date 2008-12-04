@@ -26,7 +26,7 @@ public abstract class AbstractAuthor implements java.io.Serializable {
 
 	private String firstName;
 
-	private String latName;
+	private String lastName;
 
 	private Set<Book> books = new HashSet<Book>(0);
 
@@ -37,15 +37,15 @@ public abstract class AbstractAuthor implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public AbstractAuthor(String firstName, String latName) {
+	public AbstractAuthor(String firstName, String lastName) {
 		this.firstName = firstName;
-		this.latName = latName;
+		this.lastName = lastName;
 	}
 
 	/** full constructor */
-	public AbstractAuthor(String firstName, String latName, Set<Book> books) {
+	public AbstractAuthor(String firstName, String lastName, Set<Book> books) {
 		this.firstName = firstName;
-		this.latName = latName;
+		this.lastName = lastName;
 		this.books = books;
 	}
 
@@ -71,12 +71,12 @@ public abstract class AbstractAuthor implements java.io.Serializable {
 	}
 
 	@Column(name = "lat_name", nullable = false)
-	public String getLatName() {
-		return this.latName;
+	public String getLastName() {
+		return this.lastName;
 	}
 
-	public void setLatName(String latName) {
-		this.latName = latName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")

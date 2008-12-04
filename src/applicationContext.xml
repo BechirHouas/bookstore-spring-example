@@ -31,8 +31,4 @@
 		<property name="viewName" value="booklist" />
 		<property name="bookManager" ref="bookManager" />
 	</bean>
-	<bean id="latestController" class="com.bookstore.web.LatestController">
-		<property name="viewName" value="latest" />
-		<property name="bookManager" ref="bookManager" />
-	</bean>
 </beans>

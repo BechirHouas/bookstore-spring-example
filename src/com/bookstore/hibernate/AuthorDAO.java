@@ -24,7 +24,7 @@ public class AuthorDAO extends HibernateDaoSupport {
 	// property constants
 	public static final String FIRST_NAME = "firstName";
 
-	public static final String LAT_NAME = "latName";
+	public static final String LAT_NAME = "lastName";
 
 	protected void initDao() {
 		// do nothing
@@ -90,8 +90,8 @@ public class AuthorDAO extends HibernateDaoSupport {
 		return findByProperty(FIRST_NAME, firstName);
 	}
 
-	public List<Author> findByLatName(Object latName) {
-		return findByProperty(LAT_NAME, latName);
+	public List<Author> findByLastName(Object lastName) {
+		return findByProperty(LAT_NAME, lastName);
 	}
 
 	public List findAll() {

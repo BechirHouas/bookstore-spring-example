@@ -19,13 +19,13 @@ public class Author extends AbstractAuthor implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Author(String firstName, String latName) {
-		super(firstName, latName);
+	public Author(String firstName, String lastName) {
+		super(firstName, lastName);
 	}
 
 	/** full constructor */
-	public Author(String firstName, String latName, Set<Book> books) {
-		super(firstName, latName, books);
+	public Author(String firstName, String lastName, Set<Book> books) {
+		super(firstName, lastName, books);
 	}
 
 }
