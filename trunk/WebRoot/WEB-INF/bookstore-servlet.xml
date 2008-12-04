@@ -28,7 +28,6 @@
 		<property name="mappings">
 			<props>
 				<prop key="/listbooks.html">bookListController</prop>
-				<prop key="/latest.html">latestController</prop>
 			</props>
 		</property>
 	</bean>
