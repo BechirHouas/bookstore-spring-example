@@ -1,6 +1,6 @@
 package com.bookstore.service.test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class BookManagerTest {
 	@Test
 	public void testGetBooks() {
 		List<Book> bookList = bookManager.getBooks();
-		assertNotNull(bookList);
+		assertTrue(0 != bookList.size());
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public class BookManagerTest {
 	@Test
 	public void testGetLatest() {
 		List<Book> bookList = bookManager.getLatest();
-		assertNotNull(bookList);
+		assertEquals(5, bookList.size());
 	}
 	
 	// Accessors
