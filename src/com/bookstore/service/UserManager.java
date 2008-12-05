@@ -5,6 +5,7 @@ import java.util.List;
 import com.bookstore.hibernate.User;
 import com.bookstore.hibernate.UserDAO;
 import com.bookstore.util.BookstoreUtil;
+import com.mindrot.jbcrypt.BCrypt;
 
 /**
  * The Class UserManager.
@@ -24,15 +25,39 @@ public class UserManager {
 	 */
 	public User getUserByEmailAndPassword(final String email, final String password) {
 		if (BookstoreUtil.isNotEmpty(email) && BookstoreUtil.isNotEmpty(password)) {
-			User user = new User();
-			user.setEmail(email);
-			user.setPassword(password);
-			List<User> users = userDAO.findByExample(user);
+			List<User> users = userDAO.findByEmail(email);
 			if (BookstoreUtil.isNotEmpty(users)) {
-				return users.get(0);
+				User user = users.get(0);
+				if (BCrypt.checkpw(password, user.getPassword())) {
+					return user;
+				}
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Gets the users by example.
+	 * 
+	 * @param user the user
+	 * 
+	 * @return the users by example
+	 */
+	public List<User> getUsersByExample(User user) {
+		return userDAO.findByExample(user);
+	}
+	
+	/**
+	 * Creates the user.  The password will be encrypted using jBCrypt.
+	 * 
+	 * @param user the user
+	 * 
+	 * @return the user
+	 */
+	public User createUser(User user) {
+		user.setPassword(BCrypt.hashpw(user.getPassword()));
+		userDAO.attachDirty(user);
+		return user;
 	}
 
 	/**

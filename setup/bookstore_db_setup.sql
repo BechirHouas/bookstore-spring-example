@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(60) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
@@ -92,9 +92,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `password`) VALUES
-(1, 'Bob', 'Johnson', 'bob@johnson.com', 'pwd4bob'),
-(2, 'Rex', 'Smith', 'rex@smith.com', 'pwd4rex'),
-(8, 'Tommy', 'Thompson', 'tommy@thompson.com', 'pwd4tommy');
+(1, 'Bob', 'Johnson', 'bob@johnson.com', '$2a$10$8dXdiciJxrHryWNaHWh7medEq6c1QQZVMxkvQIbbrSvfsDS.ZDvde'),
+(2, 'Rex', 'Smith', 'rex@smith.com', '$2a$10$TKb9Q.6lUujPm0AHYDeOe.bVCtMqgj29pBAez9G0FHEjn9IN6hsxS'),
+(3, 'Tommy', 'Thompson', 'tommy@thompson.com', '$2a$10$Ctl1c2NzgAMjBxnMNXgbOuUj.Pqhb6p6oYnpZj/H9yDgJVl0xlvnm'),
+(4, 'Charley', 'Brown', 'charley@brown.com', '$2a$10$XDqC6XL9mRyGNr8z/4SiNeRlhJzvirf.76hmWVibx8Zq98z0.Dh9a');
 
 --
 -- Constraints for dumped tables

@@ -1,6 +1,10 @@
 package com.bookstore.service.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,10 +30,33 @@ public class UserManagerTest {
 	 */
 	@Test
 	public void testGetUserByEmailAndPassword() {
-		User user = userManager.getUserByEmailAndPassword("bob@johnson.com", "pwd4bob");
+		User user = userManager.getUserByEmailAndPassword("charley@brown.com", "pwd4charley");
 		assertNotNull(user);
 		user = userManager.getUserByEmailAndPassword("I am not a user", "blah");
 		assertNull(user);
+	}
+	
+	/**
+	 * Test get users by example.
+	 */
+	@Test
+	public void testGetUsersByExample() {
+		User user = new User("Charley", "Brown", "charley@brown.com", null);
+		List<User> users = userManager.getUsersByExample(user);
+		assertNotNull(users);
+		assertTrue(users.size() == 1);
+	}
+	
+	/**
+	 * Test create user.
+	 */
+	@Test
+	public void testCreateUser() {
+		User user = new User("Hello", "Kitty", "hello@kitty.com", "pwd4hello");
+		user = userManager.createUser(user);
+		List<User> users = userManager.getUsersByExample(user);
+		assertNotNull(users);
+		assertTrue(users.size() == 1);
 	}
 
 	/**
