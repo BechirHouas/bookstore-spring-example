@@ -13,6 +13,7 @@ import com.bookstore.bookComparator.BookComparator;
 import com.bookstore.bookComparator.BookCompareEnum;
 import com.bookstore.hibernate.Book;
 import com.bookstore.service.BookManager;
+import com.bookstore.util.BookstoreUtil;
 
 /**
  * The Class BookListController.
@@ -67,8 +68,11 @@ public class BookListController extends ParameterizableViewController {
 		}
 		
 		// Sort by the type
-		comparator.setBookType(type);
-		Collections.sort(bookList, comparator);
+		if(BookstoreUtil.isNotEmpty(bookList))
+		{
+			comparator.setBookType(type);
+			Collections.sort(bookList, comparator);
+		}
 		
 		mav.addObject("bookList", bookList);
 		mav.addObject("title", title);
