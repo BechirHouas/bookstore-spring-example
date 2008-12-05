@@ -68,8 +68,7 @@ public class BookListController extends ParameterizableViewController {
 		}
 		
 		// Sort by the type
-		if(BookstoreUtil.isNotEmpty(bookList))
-		{
+		if (BookstoreUtil.isNotEmpty(bookList)) {
 			comparator.setBookType(type);
 			Collections.sort(bookList, comparator);
 		}
