@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.criterion.Order;
@@ -22,7 +21,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  */
 
 public class BookDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(BookDAO.class);
+	private static final Log LOG = LogFactory.getLog(BookDAO.class);
 
 	// property constants
 	public static final String ISBN = "isbn";
@@ -31,91 +30,157 @@ public class BookDAO extends HibernateDaoSupport {
 
 	public static final String IMAGE = "image";
 
+	/**
+	 * @see org.springframework.dao.support.DaoSupport#initDao()
+	 */
 	protected void initDao() {
 		// do nothing
 	}
 
+	/**
+	 * Save.
+	 * 
+	 * @param transientInstance the transient instance
+	 */
 	public void save(Book transientInstance) {
-		log.debug("saving Book instance");
+		LOG.debug("saving Book instance");
 		try {
 			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
+			LOG.debug("save successful");
 		} catch (RuntimeException re) {
-			log.error("save failed", re);
+			LOG.error("save failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Delete.
+	 * 
+	 * @param persistentInstance the persistent instance
+	 */
 	public void delete(Book persistentInstance) {
-		log.debug("deleting Book instance");
+		LOG.debug("deleting Book instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
-			log.debug("delete successful");
+			LOG.debug("delete successful");
 		} catch (RuntimeException re) {
-			log.error("delete failed", re);
+			LOG.error("delete failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Find by id.
+	 * 
+	 * @param id the id
+	 * 
+	 * @return the book
+	 */
 	public Book findById(java.lang.Integer id) {
-		log.debug("getting Book instance with id: " + id);
+		LOG.debug("getting Book instance with id: " + id);
 		try {
 			Book instance = (Book) getHibernateTemplate().get("com.bookstore.hibernate.Book", id);
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOG.error("get failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Find by example.
+	 * 
+	 * @param instance the instance
+	 * 
+	 * @return the list< book>
+	 */
 	public List<Book> findByExample(Book instance) {
-		log.debug("finding Book instance by example");
+		LOG.debug("finding Book instance by example");
 		try {
 			List<Book> results = (List<Book>) getHibernateTemplate().findByExample(instance);
-			log.debug("find by example successful, result size: " + results.size());
+			LOG.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
-			log.error("find by example failed", re);
+			LOG.error("find by example failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Find by property.
+	 * 
+	 * @param propertyName the property name
+	 * @param value the value
+	 * 
+	 * @return the list
+	 */
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Book instance with property: " + propertyName + ", value: " + value);
+		LOG.debug("finding Book instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from Book as model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
-			log.error("find by property name failed", re);
+			LOG.error("find by property name failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Find by isbn.
+	 * 
+	 * @param isbn the isbn
+	 * 
+	 * @return the list< book>
+	 */
 	public List<Book> findByIsbn(Object isbn) {
 		return findByProperty(ISBN, isbn);
 	}
 
+	/**
+	 * Find by title.
+	 * 
+	 * @param title the title
+	 * 
+	 * @return the list< book>
+	 */
 	public List<Book> findByTitle(Object title) {
 		return findByProperty(TITLE, title);
 	}
 
+	/**
+	 * Find by image.
+	 * 
+	 * @param image the image
+	 * 
+	 * @return the list< book>
+	 */
 	public List<Book> findByImage(Object image) {
 		return findByProperty(IMAGE, image);
 	}
 
+	/**
+	 * Find all.
+	 * 
+	 * @return the list
+	 */
 	public List findAll() {
-		log.debug("finding all Book instances");
+		LOG.debug("finding all Book instances");
 		try {
 			String queryString = "from Book";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
-			log.error("find all failed", re);
+			LOG.error("find all failed", re);
 			throw re;
 		}
 	}
 	
+	/**
+	 * Find latest.
+	 * 
+	 * @return the list
+	 */
 	public List findLatest() {
-		log.debug("finding all Book instances");
+		LOG.debug("finding all Book instances");
 		try {
 			String queryString = "from Book";
 			Criteria criteria = this.getSession().createCriteria(Book.class);
@@ -123,45 +188,69 @@ public class BookDAO extends HibernateDaoSupport {
 			criteria.setMaxResults(5);
 			return criteria.list();
 		} catch (RuntimeException re) {
-			log.error("find all failed", re);
+			LOG.error("find all failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Merge.
+	 * 
+	 * @param detachedInstance the detached instance
+	 * 
+	 * @return the book
+	 */
 	public Book merge(Book detachedInstance) {
-		log.debug("merging Book instance");
+		LOG.debug("merging Book instance");
 		try {
 			Book result = (Book) getHibernateTemplate().merge(detachedInstance);
-			log.debug("merge successful");
+			LOG.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOG.error("merge failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Attach dirty.
+	 * 
+	 * @param instance the instance
+	 */
 	public void attachDirty(Book instance) {
-		log.debug("attaching dirty Book instance");
+		LOG.debug("attaching dirty Book instance");
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
-			log.debug("attach successful");
+			LOG.debug("attach successful");
 		} catch (RuntimeException re) {
-			log.error("attach failed", re);
+			LOG.error("attach failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Attach clean.
+	 * 
+	 * @param instance the instance
+	 */
 	public void attachClean(Book instance) {
-		log.debug("attaching clean Book instance");
+		LOG.debug("attaching clean Book instance");
 		try {
 			getHibernateTemplate().lock(instance, LockMode.NONE);
-			log.debug("attach successful");
+			LOG.debug("attach successful");
 		} catch (RuntimeException re) {
-			log.error("attach failed", re);
+			LOG.error("attach failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Gets the from application context.
+	 * 
+	 * @param ctx the ctx
+	 * 
+	 * @return the from application context
+	 */
 	public static BookDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (BookDAO) ctx.getBean("BookDAO");
 	}

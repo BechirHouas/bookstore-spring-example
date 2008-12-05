@@ -1,4 +1,9 @@
+<h1>
+Sort
+</h1>
 <ul>
-	<li><a href="listbooks.html?filter=latest">Latest Books</a></li>
-	<li><a href="listbooks.html?filter=all">All Books</a></li>
+	<li><a href="listbooks.html?sort=title">By Title</a></li>
+	<li><a href="listbooks.html?sort=author">By Author</a></li>
+	<li><a href="listbooks.html?sort=date">By Date</a></li>
+	<li><a href="listbooks.html?sort=isbn">By ISBN</a></li>
 </ul>
