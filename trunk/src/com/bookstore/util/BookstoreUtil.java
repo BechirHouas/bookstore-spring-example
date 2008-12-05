@@ -11,6 +11,7 @@ import java.util.List;
  * 
  * @author Chris.Thorn
  */
+@SuppressWarnings("unchecked")
 public class BookstoreUtil {
 	
 	/**

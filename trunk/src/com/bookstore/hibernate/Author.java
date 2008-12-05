@@ -14,16 +14,34 @@ public class Author extends AbstractAuthor implements java.io.Serializable {
 
 	// Constructors
 
-	/** default constructor */
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * default constructor.
+	 */
 	public Author() {
 	}
 
-	/** minimal constructor */
+	/**
+	 * minimal constructor.
+	 * 
+	 * @param firstName the first name
+	 * @param lastName the last name
+	 */
 	public Author(String firstName, String lastName) {
 		super(firstName, lastName);
 	}
 
-	/** full constructor */
+	/**
+	 * full constructor.
+	 * 
+	 * @param firstName the first name
+	 * @param lastName the last name
+	 * @param books the books
+	 */
 	public Author(String firstName, String lastName, Set<Book> books) {
 		super(firstName, lastName, books);
 	}

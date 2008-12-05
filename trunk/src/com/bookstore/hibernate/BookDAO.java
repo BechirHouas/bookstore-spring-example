@@ -19,7 +19,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  * @see com.bookstore.hibernate.Book
  * @author MyEclipse Persistence Tools
  */
-
+@SuppressWarnings("unchecked")
 public class BookDAO extends HibernateDaoSupport {
 	private static final Log LOG = LogFactory.getLog(BookDAO.class);
 
@@ -182,7 +182,6 @@ public class BookDAO extends HibernateDaoSupport {
 	public List findLatest() {
 		LOG.debug("finding all Book instances");
 		try {
-			String queryString = "from Book";
 			Criteria criteria = this.getSession().createCriteria(Book.class);
 			criteria.addOrder(Order.desc("createdDate"));
 			criteria.setMaxResults(5);
