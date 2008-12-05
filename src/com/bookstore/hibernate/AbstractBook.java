@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 public abstract class AbstractBook implements java.io.Serializable {
 
 	// Fields
-
+	
 	private Integer id;
 
 	private Author author;
