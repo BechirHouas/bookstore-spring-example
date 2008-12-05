@@ -17,128 +17,206 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  * @see com.bookstore.hibernate.Author
  * @author MyEclipse Persistence Tools
  */
-
+@SuppressWarnings("unchecked")
 public class AuthorDAO extends HibernateDaoSupport {
-	private static final Log log = LogFactory.getLog(AuthorDAO.class);
+	private static final Log LOG = LogFactory.getLog(AuthorDAO.class);
 
 	// property constants
 	public static final String FIRST_NAME = "firstName";
 
 	public static final String LAT_NAME = "lastName";
 
+	/**
+	 * @see org.springframework.dao.support.DaoSupport#initDao()
+	 */
 	protected void initDao() {
 		// do nothing
 	}
 
+	/**
+	 * Save.
+	 * 
+	 * @param transientInstance the transient instance
+	 */
 	public void save(Author transientInstance) {
-		log.debug("saving Author instance");
+		LOG.debug("saving Author instance");
 		try {
 			getHibernateTemplate().save(transientInstance);
-			log.debug("save successful");
+			LOG.debug("save successful");
 		} catch (RuntimeException re) {
-			log.error("save failed", re);
+			LOG.error("save failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Delete.
+	 * 
+	 * @param persistentInstance the persistent instance
+	 */
 	public void delete(Author persistentInstance) {
-		log.debug("deleting Author instance");
+		LOG.debug("deleting Author instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
-			log.debug("delete successful");
+			LOG.debug("delete successful");
 		} catch (RuntimeException re) {
-			log.error("delete failed", re);
+			LOG.error("delete failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Find by id.
+	 * 
+	 * @param id the id
+	 * 
+	 * @return the author
+	 */
 	public Author findById(java.lang.Integer id) {
-		log.debug("getting Author instance with id: " + id);
+		LOG.debug("getting Author instance with id: " + id);
 		try {
 			Author instance = (Author) getHibernateTemplate().get("com.bookstore.hibernate.Author", id);
 			return instance;
 		} catch (RuntimeException re) {
-			log.error("get failed", re);
+			LOG.error("get failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Find by example.
+	 * 
+	 * @param instance the instance
+	 * 
+	 * @return the list< author>
+	 */
 	public List<Author> findByExample(Author instance) {
-		log.debug("finding Author instance by example");
+		LOG.debug("finding Author instance by example");
 		try {
 			List<Author> results = (List<Author>) getHibernateTemplate().findByExample(instance);
-			log.debug("find by example successful, result size: " + results.size());
+			LOG.debug("find by example successful, result size: " + results.size());
 			return results;
 		} catch (RuntimeException re) {
-			log.error("find by example failed", re);
+			LOG.error("find by example failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Find by property.
+	 * 
+	 * @param propertyName the property name
+	 * @param value the value
+	 * 
+	 * @return the list
+	 */
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Author instance with property: " + propertyName + ", value: " + value);
+		LOG.debug("finding Author instance with property: " + propertyName + ", value: " + value);
 		try {
 			String queryString = "from Author as model where model." + propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
-			log.error("find by property name failed", re);
+			LOG.error("find by property name failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Find by first name.
+	 * 
+	 * @param firstName the first name
+	 * 
+	 * @return the list< author>
+	 */
 	public List<Author> findByFirstName(Object firstName) {
 		return findByProperty(FIRST_NAME, firstName);
 	}
 
+	/**
+	 * Find by last name.
+	 * 
+	 * @param lastName the last name
+	 * 
+	 * @return the list< author>
+	 */
 	public List<Author> findByLastName(Object lastName) {
 		return findByProperty(LAT_NAME, lastName);
 	}
 
+	/**
+	 * Find all.
+	 * 
+	 * @return the list
+	 */
 	public List findAll() {
-		log.debug("finding all Author instances");
+		LOG.debug("finding all Author instances");
 		try {
 			String queryString = "from Author";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
-			log.error("find all failed", re);
+			LOG.error("find all failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Merge.
+	 * 
+	 * @param detachedInstance the detached instance
+	 * 
+	 * @return the author
+	 */
 	public Author merge(Author detachedInstance) {
-		log.debug("merging Author instance");
+		LOG.debug("merging Author instance");
 		try {
 			Author result = (Author) getHibernateTemplate().merge(detachedInstance);
-			log.debug("merge successful");
+			LOG.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
-			log.error("merge failed", re);
+			LOG.error("merge failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Attach dirty.
+	 * 
+	 * @param instance the instance
+	 */
 	public void attachDirty(Author instance) {
-		log.debug("attaching dirty Author instance");
+		LOG.debug("attaching dirty Author instance");
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
-			log.debug("attach successful");
+			LOG.debug("attach successful");
 		} catch (RuntimeException re) {
-			log.error("attach failed", re);
+			LOG.error("attach failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Attach clean.
+	 * 
+	 * @param instance the instance
+	 */
 	public void attachClean(Author instance) {
-		log.debug("attaching clean Author instance");
+		LOG.debug("attaching clean Author instance");
 		try {
 			getHibernateTemplate().lock(instance, LockMode.NONE);
-			log.debug("attach successful");
+			LOG.debug("attach successful");
 		} catch (RuntimeException re) {
-			log.error("attach failed", re);
+			LOG.error("attach failed", re);
 			throw re;
 		}
 	}
 
+	/**
+	 * Gets the from application context.
+	 * 
+	 * @param ctx the ctx
+	 * 
+	 * @return the from application context
+	 */
 	public static AuthorDAO getFromApplicationContext(ApplicationContext ctx) {
 		return (AuthorDAO) ctx.getBean("AuthorDAO");
 	}

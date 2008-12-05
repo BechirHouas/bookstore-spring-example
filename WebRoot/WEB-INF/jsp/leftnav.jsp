@@ -6,4 +6,9 @@ Sort
 	<li><a href="listbooks.html?sort=author">By Author</a></li>
 	<li><a href="listbooks.html?sort=date">By Date</a></li>
 	<li><a href="listbooks.html?sort=isbn">By ISBN</a></li>
+	<li><a href="listbooks.html?sort=genre">By Genre</a></li>
 </ul>
+<h1>
+Search
+</h1>
+
