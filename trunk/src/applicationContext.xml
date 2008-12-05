@@ -25,6 +25,9 @@
 	<bean id="bookManager" class="com.bookstore.service.BookManager">
 		<property name="bookDAO" ref="BookDAO" />
 	</bean>
+	<bean id="userManager" class="com.bookstore.service.UserManager">
+		<property name="userDAO" ref="UserDAO" />
+	</bean>
 	
 	<!-- Controllers -->
 	<bean id="bookListController" class="com.bookstore.web.BookListController">
