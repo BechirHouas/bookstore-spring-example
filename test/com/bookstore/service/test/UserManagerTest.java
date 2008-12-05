@@ -23,6 +23,7 @@ import com.bookstore.service.UserManager;
 public class UserManagerTest {
 	
 	/** The user manager. */
+	@Autowired
 	private UserManager userManager;
 
 	/**
@@ -58,16 +59,4 @@ public class UserManagerTest {
 		assertNotNull(users);
 		assertTrue(users.size() == 1);
 	}
-
-	/**
-	 * Sets the user manager.
-	 * 
-	 * @param userManager the new user manager
-	 */
-	@Autowired
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
-	}
-
-
 }
