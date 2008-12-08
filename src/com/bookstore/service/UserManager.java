@@ -2,6 +2,8 @@ package com.bookstore.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.bookstore.hibernate.User;
 import com.bookstore.hibernate.UserDAO;
 import com.bookstore.util.BookstoreUtil;
@@ -13,6 +15,7 @@ import com.mindrot.jbcrypt.BCrypt;
 public class UserManager {
 
 	/** The user dao. */
+	@Autowired
 	private UserDAO userDAO;
 
 	/**
