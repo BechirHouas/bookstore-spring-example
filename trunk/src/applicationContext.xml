@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-
-
+	
+	 
+	 <!--<context:annotation-config/>
+	-->
 	<bean id="bookstoreSessionFactoryId" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
 	</bean>
@@ -28,8 +30,8 @@
 	<bean id="userManager" class="com.bookstore.service.UserManager">
 		<property name="userDAO" ref="UserDAO" />
 	</bean>
-	
-	<!-- Controllers -->
+	<!-- Controllers 
+	-->
 	<bean id="bookListController" class="com.bookstore.web.BookListController">
 		<property name="viewName" value="booklist" />
 		<property name="bookManager" ref="bookManager" />

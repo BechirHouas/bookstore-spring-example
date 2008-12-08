@@ -2,6 +2,8 @@ package com.bookstore.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.bookstore.hibernate.Book;
 import com.bookstore.hibernate.BookDAO;
 
@@ -13,6 +15,7 @@ import com.bookstore.hibernate.BookDAO;
 public class BookManager {
 
 	/** The book dao. */
+	@Autowired
 	private BookDAO bookDAO;
 	
 	/**
