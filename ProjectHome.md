@@ -1,0 +1,1 @@
+A simple book store applications built with Spring
